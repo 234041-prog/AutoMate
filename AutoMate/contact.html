@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AutoMate – تواصل معنا</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Oxanium:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0a0f1e;--deep:#0d1b3e;--mid:#102a6b;
+  --accent:#1e90ff;--accent2:#4fb3ff;
+  --silver:#c8d6e5;--dim:#7a91a8;
+  --white:#f0f6ff;--glow:rgba(30,144,255,.35);
+  --card:rgba(13,27,62,.55);--border:rgba(30,144,255,.15);
+}
+body{font-family:'Cairo',sans-serif;background:var(--navy);color:var(--white);min-height:100vh;direction:rtl}
+
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(30,144,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(30,144,255,.055) 1px,transparent 1px);
+  background-size:55px 55px;
+  mask-image:radial-gradient(ellipse 90% 80% at 50% 20%,black 20%,transparent 100%);
+  -webkit-mask-image:radial-gradient(ellipse 90% 80% at 50% 20%,black 20%,transparent 100%);
+  pointer-events:none;z-index:0;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.1rem 4rem;
+  background:rgba(10,15,30,.75);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.logo{font-family:'Oxanium',sans-serif;font-size:1.55rem;font-weight:800;color:var(--accent);letter-spacing:2px;text-decoration:none}
+.logo span{color:var(--white)}
+nav ul{list-style:none;display:flex;gap:2rem}
+nav ul a{text-decoration:none;color:var(--dim);font-size:.9rem;font-weight:600;transition:color .3s}
+nav ul a:hover{color:var(--accent)}
+
+/* PAGE */
+.page{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:7rem 2rem 5rem}
+
+/* HEADER */
+.page-header{text-align:center;margin-bottom:3.5rem;animation:fadeUp .6s ease forwards}
+.page-tag{display:inline-block;font-family:'Oxanium',sans-serif;font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem}
+.page-header h1{font-size:clamp(2rem,4vw,3rem);font-weight:900;margin-bottom:.7rem}
+.page-header p{color:var(--dim);font-size:1rem;line-height:1.75;max-width:520px;margin:0 auto}
+
+/* GRID */
+.contact-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:2rem;align-items:start}
+
+/* INFO SIDE */
+.info-side{display:flex;flex-direction:column;gap:1.2rem;animation:fadeUp .6s .1s ease both}
+
+.info-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:1.6rem 1.5rem;
+  backdrop-filter:blur(12px);
+  display:flex;align-items:center;gap:1.1rem;
+  transition:all .35s;
+}
+.info-card:hover{border-color:rgba(30,144,255,.35);transform:translateX(-4px);background:rgba(30,144,255,.06)}
+
+.info-icon{
+  flex-shrink:0;width:50px;height:50px;border-radius:10px;
+  background:rgba(30,144,255,.1);border:1px solid rgba(30,144,255,.25);
+  display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+}
+.info-label{font-size:.78rem;color:var(--dim);margin-bottom:.2rem;font-family:'Oxanium',sans-serif;letter-spacing:1px;text-transform:uppercase}
+.info-value{font-size:1rem;font-weight:700;color:var(--white)}
+.info-value a{color:inherit;text-decoration:none;transition:color .3s}
+.info-value a:hover{color:var(--accent)}
+
+/* Social */
+.social-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:1.6rem 1.5rem;
+  backdrop-filter:blur(12px);
+}
+.social-title{font-size:.85rem;color:var(--dim);margin-bottom:1rem;font-weight:600}
+.social-row{display:flex;gap:.75rem;flex-wrap:wrap}
+.social-btn{
+  display:flex;align-items:center;gap:.45rem;
+  padding:.45rem 1rem;border-radius:7px;
+  border:1px solid var(--border);
+  color:var(--silver);font-size:.85rem;font-family:'Cairo',sans-serif;font-weight:600;
+  text-decoration:none;transition:all .3s;background:rgba(10,15,30,.4);
+}
+.social-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(30,144,255,.06)}
+
+/* Hours card */
+.hours-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:1.6rem 1.5rem;
+  backdrop-filter:blur(12px);
+}
+.hours-title{font-size:.85rem;color:var(--accent2);font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:.4rem}
+.hours-row{display:flex;justify-content:space-between;padding:.45rem 0;border-bottom:1px solid rgba(30,144,255,.07);font-size:.88rem}
+.hours-row:last-child{border-bottom:none}
+.hours-day{color:var(--dim)}
+.hours-time{color:var(--white);font-weight:600}
+.hours-time.closed{color:#ef4444}
+
+/* FORM SIDE */
+.form-side{animation:fadeUp .6s .2s ease both}
+
+.form-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:2.2rem;backdrop-filter:blur(12px);
+}
+.form-card-title{font-size:1.1rem;font-weight:700;color:var(--accent2);margin-bottom:1.8rem;display:flex;align-items:center;gap:.5rem}
+
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.form-group{margin-bottom:1rem;display:flex;flex-direction:column;gap:.4rem}
+.form-group label{font-size:.85rem;font-weight:600;color:var(--silver)}
+.form-group label span{color:#ef4444;margin-right:.2rem}
+
+.form-input,.form-select,.form-textarea{
+  background:rgba(10,15,30,.6);border:1px solid var(--border);
+  border-radius:8px;color:var(--white);
+  font-family:'Cairo',sans-serif;font-size:.95rem;padding:.8rem 1rem;
+  outline:none;transition:all .3s;width:100%;
+}
+.form-input:focus,.form-select:focus,.form-textarea:focus{
+  border-color:var(--accent);box-shadow:0 0 0 3px rgba(30,144,255,.1);
+}
+.form-input::placeholder,.form-textarea::placeholder{color:var(--dim)}
+.form-select{cursor:pointer;appearance:none;-webkit-appearance:none}
+.form-select option{background:#0d1b3e;color:var(--white)}
+.form-textarea{resize:vertical;min-height:120px;line-height:1.7}
+
+/* Submit */
+.submit-btn{
+  width:100%;padding:1rem;border:none;border-radius:8px;
+  background:var(--accent);color:var(--navy);
+  font-family:'Cairo',sans-serif;font-size:1.05rem;font-weight:700;
+  cursor:pointer;transition:all .3s;
+  box-shadow:0 0 25px rgba(30,144,255,.35);
+  display:flex;align-items:center;justify-content:center;gap:.6rem;
+  margin-top:.5rem;
+}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 8px 35px rgba(30,144,255,.5)}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+/* Success */
+.success-box{
+  display:none;text-align:center;padding:3rem 2rem;
+}
+.success-icon{
+  width:80px;height:80px;margin:0 auto 1.5rem;border-radius:50%;
+  background:rgba(34,197,94,.1);border:2px solid rgba(34,197,94,.4);
+  display:flex;align-items:center;justify-content:center;font-size:2rem;
+  animation:pop .4s cubic-bezier(.34,1.56,.64,1) forwards;
+}
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+.success-box h3{font-size:1.4rem;font-weight:900;margin-bottom:.6rem}
+.success-box p{color:var(--dim);line-height:1.7}
+.another-btn{
+  margin-top:1.5rem;padding:.7rem 1.8rem;border:1px solid var(--border);
+  background:transparent;color:var(--dim);border-radius:8px;
+  font-family:'Cairo',sans-serif;font-size:.9rem;cursor:pointer;transition:all .3s;
+}
+.another-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* Error */
+.field-error{font-size:.78rem;color:#f87171;margin-top:.2rem;display:none}
+.form-input.invalid,.form-select.invalid,.form-textarea.invalid{border-color:#ef4444}
+
+/* Char counter */
+.char-counter{font-size:.75rem;color:var(--dim);text-align:left;margin-top:.2rem}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:850px){
+  nav{padding:1rem 1.5rem}
+  nav ul{display:none}
+  .page{padding:6rem 1rem 3rem}
+  .contact-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="#">Auto<span>Mate</span></a>
+  <ul>
+    <li><a href="index.html">الرئيسية</a></li>
+    <li><a href="tash.html">التشخيص</a></li>
+    <li><a href="#">الورش</a></li>
+    <li><a href="#" style="color:var(--accent)">تواصل معنا</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <div class="page-tag">✉ تواصل معنا</div>
+    <h1>كيف نقدر نساعدك؟</h1>
+    <p>فريقنا جاهز للرد على استفساراتك. أرسل رسالتك وسنتواصل معك في أقرب وقت.</p>
+  </div>
+
+  <div class="contact-grid">
+
+    <!-- ── INFO SIDE ── -->
+    <div class="info-side">
+
+      <div class="info-card">
+        <div class="info-icon">📧</div>
+        <div>
+          <div class="info-label">البريد الإلكتروني</div>
+          <div class="info-value"><a href="mailto:support@automate.ps">support@automate.ps</a></div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">📞</div>
+        <div>
+          <div class="info-label">رقم الهاتف</div>
+          <div class="info-value"><a href="tel:+970590000000">+970 59 000 0000</a></div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">📍</div>
+        <div>
+          <div class="info-label">العنوان</div>
+          <div class="info-value">رام الله، فلسطين<br><span style="font-size:.85rem;color:var(--dim);font-weight:400">منصة إلكترونية تربط أصحاب السيارات بمحطات الصيانة</span></div>
+        </div>
+      </div>
+
+      <!-- HOURS -->
+      <div class="hours-card">
+        <div class="hours-title">🕐 ساعات العمل</div>
+        <div class="hours-row"><span class="hours-day">السبت – الخميس</span><span class="hours-time">9:00 ص – 6:00 م</span></div>
+        <div class="hours-row"><span class="hours-day">الجمعة</span><span class="hours-time closed">مغلق</span></div>
+      </div>
+
+      <!-- SOCIAL -->
+      <div class="social-card">
+        <div class="social-title">تابعنا على السوشيال ميديا</div>
+        <div class="social-row">
+          <a href="#" class="social-btn">𝕏 تويتر</a>
+          <a href="#" class="social-btn">📸 إنستقرام</a>
+          <a href="#" class="social-btn">💼 لينكدإن</a>
+          <a href="#" class="social-btn">▶ يوتيوب</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── FORM SIDE ── -->
+    <div class="form-side">
+      <div class="form-card">
+        <div class="form-card-title">💬 أرسل رسالتك</div>
+
+        <div id="formWrap">
+          <div class="form-row">
+            <div class="form-group">
+              <label>الاسم الكامل <span>*</span></label>
+              <input type="text" id="fname" class="form-input" placeholder="محمد العتيبي">
+              <div class="field-error" id="fname-err">الرجاء إدخال الاسم</div>
+            </div>
+            <div class="form-group">
+              <label>رقم الهاتف <span>*</span></label>
+              <input type="tel" id="fphone" class="form-input" placeholder="+970 5X XXX XXXX" dir="ltr" style="text-align:right">
+              <div class="field-error" id="fphone-err">الرجاء إدخال رقم هاتف صحيح</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>البريد الإلكتروني <span>*</span></label>
+            <input type="email" id="femail" class="form-input" placeholder="example@email.com" dir="ltr" style="text-align:right">
+            <div class="field-error" id="femail-err">الرجاء إدخال بريد إلكتروني صحيح</div>
+          </div>
+
+          <div class="form-group">
+            <label>نوع الاستفسار <span>*</span></label>
+            <select id="ftype" class="form-select">
+              <option value="" disabled selected>اختر نوع الاستفسار</option>
+              <option value="support">🔧 دعم فني</option>
+              <option value="booking">📅 حجز أو صيانة</option>
+              <option value="complaint">⚠️ شكوى</option>
+              <option value="workshop">🏪 انضمام ورشة</option>
+              <option value="partnership">🤝 شراكة تجارية</option>
+              <option value="other">💬 أخرى</option>
+            </select>
+            <div class="field-error" id="ftype-err">الرجاء اختيار نوع الاستفسار</div>
+          </div>
+
+          <div class="form-group">
+            <label>الرسالة <span>*</span></label>
+            <textarea id="fmsg" class="form-textarea" placeholder="اكتب تفاصيل استفسارك هنا..." maxlength="1000" oninput="updateCounter()"></textarea>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div class="field-error" id="fmsg-err" style="display:none">الرجاء كتابة رسالتك</div>
+              <div class="char-counter" id="charCount">0 / 1000</div>
+            </div>
+          </div>
+
+          <button class="submit-btn" id="submitBtn" onclick="submitForm()">
+            ✉️ إرسال الرسالة
+          </button>
+        </div>
+
+        <!-- SUCCESS -->
+        <div class="success-box" id="successBox">
+          <div class="success-icon">✓</div>
+          <h3>تم إرسال رسالتك!</h3>
+          <p>شكراً لتواصلك معنا.<br>سيرد عليك فريقنا خلال 24 ساعة على البريد الإلكتروني.</p>
+          <button class="another-btn" onclick="resetForm()">إرسال رسالة أخرى</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function updateCounter(){
+  const v = document.getElementById('fmsg').value.length;
+  document.getElementById('charCount').textContent = v + ' / 1000';
+}
+
+function validate(){
+  let ok = true;
+
+  const fields = [
+    { id:'fname',  errId:'fname-err',  check: v => v.trim().length >= 2 },
+    { id:'fphone', errId:'fphone-err', check: v => /^05\d{8}$/.test(v.trim()) },
+    { id:'femail', errId:'femail-err', check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
+    { id:'ftype',  errId:'ftype-err',  check: v => v !== '' },
+    { id:'fmsg',   errId:'fmsg-err',   check: v => v.trim().length >= 10 },
+  ];
+
+  fields.forEach(f => {
+    const el  = document.getElementById(f.id);
+    const err = document.getElementById(f.errId);
+    if(!f.check(el.value)){
+      el.classList.add('invalid');
+      err.style.display = 'block';
+      ok = false;
+    } else {
+      el.classList.remove('invalid');
+      err.style.display = 'none';
+    }
+  });
+
+  return ok;
+}
+
+// live clear on input
+['fname','fphone','femail','ftype','fmsg'].forEach(id => {
+  document.getElementById(id).addEventListener('input', function(){
+    this.classList.remove('invalid');
+    const errEl = document.getElementById(id + '-err');
+    if(errEl) errEl.style.display = 'none';
+  });
+});
+
+function submitForm(){
+  if(!validate()) return;
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span style="display:inline-block;animation:spin 1s linear infinite">⏳</span> جاري الإرسال...';
+
+  // simulate send
+  setTimeout(() => {
+    document.getElementById('formWrap').style.display = 'none';
+    document.getElementById('successBox').style.display = 'block';
+  }, 1800);
+}
+
+function resetForm(){
+  ['fname','fphone','femail','fmsg'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('ftype').selectedIndex = 0;
+  document.getElementById('charCount').textContent = '0 / 1000';
+  document.getElementById('successBox').style.display = 'none';
+  document.getElementById('formWrap').style.display = 'block';
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = false;
+  btn.innerHTML = '✉️ إرسال الرسالة';
+}
+</script>
+<style>@keyframes spin{to{transform:rotate(360deg)}}</style>
+</body>
+</html>
